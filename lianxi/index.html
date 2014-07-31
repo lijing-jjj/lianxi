@@ -3,8 +3,42 @@
 	<head>
 		<meta charset="utf-8" />
 		<title></title>
-	</head>
-	<body>
 		
+	</head>
+	<body ng-app>
+		
+		 <div ng-controller="ddd">
+          <form>
+               Starting:<input ng-change="computeNeed()"
+                ng-model="funding.startingEstimate"/>
+               Recommendation:{{needed}}
+           </form>
+        </div>
+		 <hr />
+		  <div ng-controller="HelloController">
+            <p>{{greeting.text}},Word</p>
+            <div>
+            	 <p>{{ddd.text}}</p>
+            </div>
+        </div>
+		
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		 <script type="text/javascript">
+       function HelloController($scope){
+          $scope.greeting={text:"Hello"};
+         /*  setTimeout(function(){
+           	   scope.greeting.text="hehe...";
+           },5000);*/
+           $scope.ddd={text:"Hello"};
+        }
+       
+       function ddd($scope){
+           $scope.funding={startingEstimate:0};
+           var computeNeed= function(){
+                $scope.needed=$scope.funding.startingEstimate*10;
+            }
+            $scope.$watch("funding.startingEstimate",computeNeed)
+       }
+    </script>
 	</body>
 </html>
